@@ -1,0 +1,14 @@
+from transformers import AutoTokenizer, AutoModel
+
+
+model_path = "/home/qianc/Models/chatglm3-6b"
+tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+model = AutoModel.from_pretrained(model_path, trust_remote_code=True).cuda()
+
+model = model.eval()
+response, history = model.chat(tokenizer, "你好阿", history=[])
+# print(f"history is {history}")
+print(response)
+# response, history = model.chat(tokenizer, "晚上睡不着应该怎么办", history=history)
+# print(f"history is {history}")
+# print(response)
